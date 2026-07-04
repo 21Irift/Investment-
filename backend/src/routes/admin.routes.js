@@ -1,39 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getDashboardStats,
+  getAllUsers,
+  getPendingDeposits,
+  approveDeposit,
+  rejectDeposit,
+  getPendingWithdrawals,
+  approveWithdrawal,
+  rejectWithdrawal,
+  sendBroadcast,
+} = require('../controllers/adminController');
+const { authMiddleware, adminMiddleware } = require('../middleware/auth');
 
 // Dashboard Statistics
-router.get('/dashboard/stats', (req, res) => {
-  res.json({ message: 'Dashboard stats endpoint - to be implemented' });
-});
+router.get('/dashboard/stats', authMiddleware, adminMiddleware, getDashboardStats);
 
 // Get All Users
-router.get('/users', (req, res) => {
-  res.json({ message: 'Get users endpoint - to be implemented' });
-});
+router.get('/users', authMiddleware, adminMiddleware, getAllUsers);
 
 // Get Pending Deposits
-router.get('/deposits/pending', (req, res) => {
-  res.json({ message: 'Get pending deposits endpoint - to be implemented' });
-});
+router.get('/deposits/pending', authMiddleware, adminMiddleware, getPendingDeposits);
 
 // Approve Deposit
-router.post('/deposits/:id/approve', (req, res) => {
-  res.json({ message: 'Approve deposit endpoint - to be implemented' });
-});
+router.post('/deposits/:id/approve', authMiddleware, adminMiddleware, approveDeposit);
+
+// Reject Deposit
+router.post('/deposits/:id/reject', authMiddleware, adminMiddleware, rejectDeposit);
 
 // Get Pending Withdrawals
-router.get('/withdrawals/pending', (req, res) => {
-  res.json({ message: 'Get pending withdrawals endpoint - to be implemented' });
-});
+router.get('/withdrawals/pending', authMiddleware, adminMiddleware, getPendingWithdrawals);
 
 // Approve Withdrawal
-router.post('/withdrawals/:id/approve', (req, res) => {
-  res.json({ message: 'Approve withdrawal endpoint - to be implemented' });
-});
+router.post('/withdrawals/:id/approve', authMiddleware, adminMiddleware, approveWithdrawal);
+
+// Reject Withdrawal
+router.post('/withdrawals/:id/reject', authMiddleware, adminMiddleware, rejectWithdrawal);
 
 // Send Broadcast
-router.post('/broadcast', (req, res) => {
-  res.json({ message: 'Send broadcast endpoint - to be implemented' });
-});
+router.post('/broadcast', authMiddleware, adminMiddleware, sendBroadcast);
 
 module.exports = router;

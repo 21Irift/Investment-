@@ -1,29 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getWallet,
+  deposit,
+  withdraw,
+  transfer,
+  addBankAccount,
+} = require('../controllers/walletController');
+const { authMiddleware } = require('../middleware/auth');
 
 // Get Wallet
-router.get('/:id', (req, res) => {
-  res.json({ message: 'Get wallet endpoint - to be implemented' });
-});
+router.get('/:id', authMiddleware, getWallet);
 
 // Deposit
-router.post('/deposit', (req, res) => {
-  res.json({ message: 'Deposit endpoint - to be implemented' });
-});
+router.post('/deposit', authMiddleware, deposit);
 
 // Withdrawal
-router.post('/withdraw', (req, res) => {
-  res.json({ message: 'Withdrawal endpoint - to be implemented' });
-});
+router.post('/withdraw', authMiddleware, withdraw);
 
 // Transfer
-router.post('/transfer', (req, res) => {
-  res.json({ message: 'Transfer endpoint - to be implemented' });
-});
+router.post('/transfer', authMiddleware, transfer);
 
 // Add Bank Account
-router.post('/bank-account', (req, res) => {
-  res.json({ message: 'Add bank account endpoint - to be implemented' });
-});
+router.post('/bank-account', authMiddleware, addBankAccount);
 
 module.exports = router;

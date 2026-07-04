@@ -1,24 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getUserOrders,
+  createOrder,
+  getOrderDetails,
+  generateReceipt,
+} = require('../controllers/orderController');
+const { authMiddleware } = require('../middleware/auth');
 
 // Get User Orders
-router.get('/:userId', (req, res) => {
-  res.json({ message: 'Get orders endpoint - to be implemented' });
-});
+router.get('/:userId', authMiddleware, getUserOrders);
 
 // Create Order
-router.post('/', (req, res) => {
-  res.json({ message: 'Create order endpoint - to be implemented' });
-});
+router.post('/', authMiddleware, createOrder);
 
 // Get Order Details
-router.get('/details/:orderId', (req, res) => {
-  res.json({ message: 'Get order details endpoint - to be implemented' });
-});
+router.get('/details/:orderId', authMiddleware, getOrderDetails);
 
 // Generate Receipt
-router.get('/:orderId/receipt', (req, res) => {
-  res.json({ message: 'Generate receipt endpoint - to be implemented' });
-});
+router.get('/:orderId/receipt', authMiddleware, generateReceipt);
 
 module.exports = router;

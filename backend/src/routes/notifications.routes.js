@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getNotifications,
+  markAsRead,
+  clearAllNotifications,
+} = require('../controllers/notificationController');
+const { authMiddleware } = require('../middleware/auth');
 
 // Get Notifications
-router.get('/:userId', (req, res) => {
-  res.json({ message: 'Get notifications endpoint - to be implemented' });
-});
+router.get('/:userId', authMiddleware, getNotifications);
 
 // Mark as Read
-router.put('/:notificationId/read', (req, res) => {
-  res.json({ message: 'Mark as read endpoint - to be implemented' });
-});
+router.put('/:notificationId/read', authMiddleware, markAsRead);
 
 // Clear All
-router.delete('/:userId', (req, res) => {
-  res.json({ message: 'Clear notifications endpoint - to be implemented' });
-});
+router.delete('/:userId', authMiddleware, clearAllNotifications);
 
 module.exports = router;

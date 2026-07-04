@@ -1,29 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const { register, login, logout, refreshToken } = require('../controllers/authController');
 
 // Register
-router.post('/register', (req, res) => {
-  res.json({ message: 'Register endpoint - to be implemented' });
-});
+router.post('/register', register);
 
 // Login
-router.post('/login', (req, res) => {
-  res.json({ message: 'Login endpoint - to be implemented' });
-});
+router.post('/login', login);
 
 // Logout
-router.post('/logout', (req, res) => {
-  res.json({ message: 'Logout endpoint - to be implemented' });
-});
+router.post('/logout', logout);
 
 // Refresh Token
-router.post('/refresh-token', (req, res) => {
-  res.json({ message: 'Refresh token endpoint - to be implemented' });
-});
-
-// Social Login
-router.post('/social-login', (req, res) => {
-  res.json({ message: 'Social login endpoint - to be implemented' });
-});
+router.post('/refresh-token', refreshToken);
 
 module.exports = router;

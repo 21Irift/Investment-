@@ -1,29 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getProfile,
+  updateProfile,
+  changePassword,
+  enable2FA,
+  disable2FA,
+} = require('../controllers/userController');
+const { authMiddleware } = require('../middleware/auth');
 
 // Get User Profile
-router.get('/profile/:id', (req, res) => {
-  res.json({ message: 'Get profile endpoint - to be implemented' });
-});
+router.get('/profile/:id', authMiddleware, getProfile);
 
 // Update User Profile
-router.put('/profile/:id', (req, res) => {
-  res.json({ message: 'Update profile endpoint - to be implemented' });
-});
+router.put('/profile/:id', authMiddleware, updateProfile);
 
 // Change Password
-router.post('/change-password', (req, res) => {
-  res.json({ message: 'Change password endpoint - to be implemented' });
-});
+router.post('/change-password', authMiddleware, changePassword);
 
 // Enable 2FA
-router.post('/2fa/enable', (req, res) => {
-  res.json({ message: 'Enable 2FA endpoint - to be implemented' });
-});
+router.post('/2fa/enable', authMiddleware, enable2FA);
 
-// Verify 2FA
-router.post('/2fa/verify', (req, res) => {
-  res.json({ message: 'Verify 2FA endpoint - to be implemented' });
-});
+// Disable 2FA
+router.post('/2fa/disable', authMiddleware, disable2FA);
 
 module.exports = router;

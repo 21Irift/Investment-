@@ -1,24 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getAllProducts,
+  getProductDetails,
+  searchProducts,
+  addReview,
+} = require('../controllers/productController');
+const { authMiddleware } = require('../middleware/auth');
 
 // Get All Products
-router.get('/', (req, res) => {
-  res.json({ message: 'Get products endpoint - to be implemented' });
-});
+router.get('/', getAllProducts);
 
 // Get Product Details
-router.get('/:id', (req, res) => {
-  res.json({ message: 'Get product details endpoint - to be implemented' });
-});
+router.get('/:id', getProductDetails);
 
 // Search Products
-router.get('/search', (req, res) => {
-  res.json({ message: 'Search products endpoint - to be implemented' });
-});
+router.get('/search', searchProducts);
 
 // Add Product Review
-router.post('/:id/reviews', (req, res) => {
-  res.json({ message: 'Add review endpoint - to be implemented' });
-});
+router.post('/:id/reviews', authMiddleware, addReview);
 
 module.exports = router;

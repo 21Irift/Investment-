@@ -1,24 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getPackages,
+  invest,
+  getInvestmentHistory,
+  calculateROI,
+} = require('../controllers/investmentController');
+const { authMiddleware } = require('../middleware/auth');
 
 // Get Investment Packages
-router.get('/packages', (req, res) => {
-  res.json({ message: 'Get packages endpoint - to be implemented' });
-});
+router.get('/packages', getPackages);
 
 // Invest
-router.post('/invest', (req, res) => {
-  res.json({ message: 'Invest endpoint - to be implemented' });
-});
+router.post('/invest', authMiddleware, invest);
 
 // Get Investment History
-router.get('/history/:userId', (req, res) => {
-  res.json({ message: 'Get investment history endpoint - to be implemented' });
-});
+router.get('/history/:userId', authMiddleware, getInvestmentHistory);
 
 // Calculate ROI
-router.post('/calculate-roi', (req, res) => {
-  res.json({ message: 'Calculate ROI endpoint - to be implemented' });
-});
+router.post('/calculate-roi', calculateROI);
 
 module.exports = router;

@@ -2,32 +2,64 @@ version: '3.8'
 
 services:
   mongodb:
-    image: mongo:5.0
-    container_name: investment_mongodb
+    image: mongo:latest
+    container_name: investment-mongodb
     ports:
-      - '27017:27017'
+      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - mongodb_data:/data/db
     networks:
-      - investment_network
+      - investment-network
 
   redis:
-    image: redis:7-alpine
-    container_name: investment_redis
+    image: redis:latest
+    container_name: investment-redis
     ports:
-      - '6379:6379'
-    volumes:
-      - redis_data:/data
+      - "6379:6379"
     networks:
-      - investment_network
+      - investment-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: investment-backend
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/investment-platform
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: your_jwt_secret_key
+      PORT: 3001
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - investment-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: investment-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    depends_on:
+      - backend
+    networks:
+      - investment-network
+    restart: unless-stopped
 
 volumes:
   mongodb_data:
-  redis_data:
 
 networks:
-  investment_network:
+  investment-network:
     driver: bridge

@@ -1,186 +1,258 @@
-# Premium Investment & Marketplace Platform
+# 💎 Premium Investment Platform
 
-A full-featured financial and e-commerce platform with wallet management, investment opportunities, marketplace, and advanced user features.
+A comprehensive full-stack investment and e-commerce platform built with modern technologies.
 
-## 🚀 Features (40 Total)
+## 📋 Table of Contents
 
-### User Management & Authentication (1-5)
-- User Registration & Login
-- Email Verification
-- Password Reset
-- Social Login Integration
-- User Roles (Admin, Vendor, Customer)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [API Documentation](#api-documentation)
+- [Environment Variables](#environment-variables)
+- [Contributing](#contributing)
 
-### Wallet & Payment System (6-11)
-- Wallet Management
-- Deposit System
-- Withdrawal System
-- Transaction History
-- Payment Gateway Integration
-- Crypto Wallet Support
+## ✨ Features
 
-### Investment Opportunities (12-14)
-- Investment Packages
-- ROI Calculation
-- Investment History
+### User Features
+- 🔐 Secure Authentication (JWT, 2FA)
+- 💰 Multi-currency Digital Wallet
+- 📈 Investment Packages with High ROI
+- 🛒 Integrated Marketplace
+- 💳 Multiple Payment Methods
+- 📊 Real-time Portfolio Dashboard
+- 👥 Referral Program
+- 🏆 Loyalty Points System
+- 📱 Responsive Design
 
-### User Profile & Security (15, 34)
-- User Profile Management
-- Two-Factor Authentication
-- Security Features & Alerts
+### Admin Features
+- 📊 Dashboard & Analytics
+- ✅ Deposit/Withdrawal Approval
+- 📢 Broadcast Notifications
+- 👤 User Management
+- 📋 Transaction Monitoring
 
-### Referral Program (16)
-- Unique Referral Links
-- Referral Dashboard
-- Rewards Tracking
+## 🛠️ Tech Stack
 
-### Notifications (17)
-- Real-time Notifications Center
-- Multiple notification types
+### Frontend
+- **Framework**: Next.js 13
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Data Fetching**: TanStack Query
+- **Real-time**: Socket.io
+- **HTTP Client**: Axios
+- **Auth**: NextAuth.js
+- **Animation**: Framer Motion
 
-### Shopping Features (18-22)
-- Search & Filters
-- Shopping Cart
-- Wishlist
-- Product Reviews
-- Digital Receipts
-
-### Dashboard & Analytics (23-24)
-- User Dashboard Statistics
-- Admin Dashboard
-
-### Community & Engagement (25-26, 32-33)
-- Live Activity Feed
-- Loyalty & Rewards Program
-- User Badges
-- Admin Broadcasts
-
-### Promotions & Support (27-31, 35)
-- Discount Coupons
-- Multi-language Support
-- Contact Us Page
-- FAQ Page
-- Help Center
-- User Reports
-
-### Design & Performance (36-40)
-- Responsive Design
-- Theme Customization
-- Performance Optimization
-- Modern UI with Glassmorphism
-- Professional Footer
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB
+- **ORM**: Mongoose
+- **Authentication**: JWT + Passport
+- **Real-time**: Socket.io
+- **Validation**: Joi, Express Validator
+- **Security**: Helmet, CORS, Rate Limiting
+- **Payment**: Stripe
+- **Cache**: Redis
+- **Email**: Nodemailer
 
 ## 📁 Project Structure
 
 ```
 investment-platform/
-├── frontend/               # React/Next.js frontend
-│   ├── components/        # Reusable components
-│   ├── pages/            # Page components
-│   ├── styles/           # CSS and theme
-│   ├── hooks/            # Custom hooks
-│   ├── context/          # State management
-│   ├── utils/            # Utility functions
-│   └── public/           # Static assets
-├── backend/              # Node.js/Express backend
-│   ├── routes/           # API routes
-│   ├── controllers/       # Route controllers
-│   ├── models/           # Database models
-│   ├── middleware/       # Express middleware
-│   ├── services/         # Business logic
-│   ├── config/           # Configuration files
-│   └── utils/            # Utility functions
-├── database/             # Database schemas
-├── docs/                 # Documentation
-└── docker-compose.yml    # Docker setup
+├── frontend/
+│   ├── pages/
+│   │   ├── index.js (Home)
+│   │   ├── login.js
+│   │   ├── register.js
+│   │   ├── dashboard.js
+│   │   ├── wallet.js
+│   │   ├── investments.js
+│   │   ├── marketplace.js
+│   │   ├── _app.js
+│   │   └── _document.js
+│   ├── styles/
+│   │   └── globals.css
+│   ├── components/ (to be created)
+│   ├── hooks/ (to be created)
+│   ├── services/ (to be created)
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── tailwind.config.js
+│   ├── next.config.js
+│   └── Dockerfile
+│
+├── backend/
+│   ├── src/
+│   │   ├── server.js
+│   │   ├── routes/
+│   │   │   ├── auth.routes.js
+│   │   │   ├── users.routes.js
+│   │   │   ├── wallet.routes.js
+│   │   │   ├── transactions.routes.js
+│   │   │   ├── investments.routes.js
+│   │   │   ├── products.routes.js
+│   │   │   ├── orders.routes.js
+│   │   │   ├── notifications.routes.js
+│   │   │   └── admin.routes.js
+│   │   ├── models/
+│   │   │   ├── User.js
+│   │   │   ├── Wallet.js
+│   │   │   └── Transaction.js
+│   │   ├── config/
+│   │   │   └── database.js
+│   │   ├── middleware/ (to be created)
+│   │   ├── controllers/ (to be created)
+│   │   └── services/ (to be created)
+│   ├── package.json
+│   ├── Dockerfile
+│   └── .gitignore
+│
+├── docker-compose.yml
+├── .gitignore
+└── README.md
 ```
 
-## 🛠 Tech Stack
-
-### Frontend
-- **Framework**: Next.js 13+ / React 18+
-- **Styling**: Tailwind CSS + Custom Glassmorphism
-- **State Management**: Context API / Redux
-- **Authentication**: JWT + OAuth
-- **Real-time**: Socket.io
-- **UI Components**: Shadcn/ui, Framer Motion
-
-### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB / PostgreSQL
-- **Authentication**: JWT, Passport.js
-- **Payment Gateway**: Stripe / PayPal
-- **Email**: Nodemailer
-- **Notifications**: Socket.io
-- **Validation**: Joi, Express Validator
-
-### DevOps
-- **Containerization**: Docker
-- **Orchestration**: Docker Compose
-- **Version Control**: Git
-
-## 📋 Getting Started
+## 🚀 Installation
 
 ### Prerequisites
-- Node.js 16+
-- MongoDB / PostgreSQL
+- Node.js 18+
+- MongoDB
+- Redis (optional, for caching)
 - npm or yarn
 
-### Installation
+### Frontend Setup
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/21Irift/Investment-.git
-   cd Investment-
-   ```
+```bash
+cd frontend
+npm install
+```
 
-2. **Setup Frontend**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+### Backend Setup
 
-3. **Setup Backend**
-   ```bash
-   cd backend
-   npm install
-   npm run dev
-   ```
+```bash
+cd backend
+npm install
+```
 
-4. **Configure Environment**
-   - Copy `.env.example` to `.env`
-   - Update with your configuration
+## 🎯 Running the Application
 
-## 🔐 Security Features
-- JWT Authentication
-- Bcrypt Password Hashing
-- Rate Limiting
-- CORS Protection
-- SQL Injection Prevention
-- XSS Protection
-- CSRF Protection
-- Email Verification
-- 2FA Support
+### Development Mode
 
-## 📚 Documentation
+**Frontend**:
+```bash
+cd frontend
+npm run dev
+# Runs on http://localhost:3000
+```
 
-See `/docs` folder for:
-- API Documentation
-- Database Schema
-- Setup Guide
-- Contributing Guidelines
+**Backend**:
+```bash
+cd backend
+npm run dev
+# Runs on http://localhost:3001
+```
 
-## 📝 License
+### Production Mode
 
-MIT License - See LICENSE file
+**Frontend**:
+```bash
+cd frontend
+npm run build
+npm start
+```
 
-## 👥 Support
+**Backend**:
+```bash
+cd backend
+npm start
+```
 
-For issues and questions, use the Contact Us or Help Center features in the platform.
+### Using Docker
+
+```bash
+docker-compose up -d
+```
+
+## 📚 API Documentation
+
+### Base URL
+```
+http://localhost:3001/api
+```
+
+### Authentication Endpoints
+- `POST /auth/register` - Register new user
+- `POST /auth/login` - User login
+- `POST /auth/logout` - User logout
+- `POST /auth/refresh-token` - Refresh JWT token
+
+### User Endpoints
+- `GET /users/profile/:id` - Get user profile
+- `PUT /users/profile/:id` - Update profile
+- `POST /users/change-password` - Change password
+- `POST /users/2fa/enable` - Enable 2FA
+
+### Wallet Endpoints
+- `GET /wallet/:id` - Get wallet details
+- `POST /wallet/deposit` - Deposit funds
+- `POST /wallet/withdraw` - Withdraw funds
+- `POST /wallet/transfer` - Transfer to another user
+
+### Investment Endpoints
+- `GET /investments/packages` - Get investment packages
+- `POST /investments/invest` - Create investment
+- `GET /investments/history/:userId` - Get investment history
+
+### Transaction Endpoints
+- `GET /transactions` - Get all transactions
+- `GET /transactions/:id` - Get transaction details
+
+### Marketplace Endpoints
+- `GET /products` - Get all products
+- `GET /products/:id` - Get product details
+- `POST /orders` - Create order
+
+## 🔐 Environment Variables
+
+### Frontend (.env.local)
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_APP_NAME=Investment Platform
+```
+
+### Backend (.env)
+```
+PORT=3001
+MONGODB_URI=mongodb://localhost:27017/investment-platform
+JWT_SECRET=your_jwt_secret_key
+JWT_EXPIRE=7d
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+STRIPE_SECRET_KEY=your_stripe_key
+NODEMAILER_EMAIL=your_email@gmail.com
+NODEMAILER_PASSWORD=your_app_password
+FRONTEND_URL=http://localhost:3000
+REDIS_URL=redis://localhost:6379
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Support
+
+For support, email support@investmentplatform.com or open an issue on GitHub.
 
 ---
 
-**Version**: 1.0.0  
-**Last Updated**: 2026-07-04
+**Made with ❤️ by the Investment Platform Team**

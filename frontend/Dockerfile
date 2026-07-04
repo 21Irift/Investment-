@@ -1,15 +1,26 @@
-FROM node:18-alpine
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 
 COPY . .
 
 RUN npm run build
 
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY package*.json ./
+
+RUN npm install --production
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

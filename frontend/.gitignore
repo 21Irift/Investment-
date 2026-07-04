@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+.npm
+
+# testing
+coverage/
+
+# production
+build/
+.next/
+out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+
+# environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
